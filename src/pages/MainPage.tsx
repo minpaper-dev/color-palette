@@ -1,27 +1,13 @@
 import { useEffect, useState } from 'react'
 import ColorItem from '../components/ColorItem'
 import styled from 'styled-components'
-import logo from '../assets/logo.png'
+import Header from '../components/Header'
 
 const Container = styled.div`
   display: flex;
   align-items: center;
   flex-direction: column;
   padding: 5rem 0 10rem;
-`
-
-const Logo = styled.img`
-  width: 30%;
-`
-
-const WrapSearch = styled.div`
-  display: flex;
-  align-items: center;
-  margin: 5rem 0;
-`
-
-const Input = styled.input`
-  margin-left: 2rem;
 `
 
 const WrapColor = styled.div`
@@ -81,11 +67,7 @@ const MainPage = () => {
 
   return (
     <Container>
-      <Logo src={logo} />
-      <WrapSearch>
-        Search Your Color !
-        <Input />
-      </WrapSearch>
+      <Header />
       <WrapColor>
         {colors.map(color => (
           <ColorItem key={color} color={color} />
