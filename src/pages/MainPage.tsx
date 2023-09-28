@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import ColorItem from '../components/ColorItem'
 import styled from 'styled-components'
 import logo from '../assets/logo.png'
