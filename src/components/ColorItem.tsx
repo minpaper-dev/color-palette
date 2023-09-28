@@ -1,10 +1,15 @@
+import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 
 const WrapItem = styled.button`
   width: 15vw;
-  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   margin-right: 2.5rem;
   margin-bottom: 2.5rem;
+  transition: all ease 100ms;
+  &:hover {
+    transform: scale(1.05);
+  }
 `
 
 const Color = styled.div<{ $color: string }>`
@@ -20,10 +25,14 @@ const Description = styled.div`
 `
 
 const ColorItem = ({ color }: { color: string }) => {
+  const navigate = useNavigate()
+
+  const NO_HASH_COLOR = color.replace('#', '')
+
   return (
-    <WrapItem>
+    <WrapItem onClick={() => navigate(`/color/${NO_HASH_COLOR}`)}>
       <Color $color={color} />
-      <Description>{color}</Description>
+      <Description>{color.toLocaleUpperCase()}</Description>
     </WrapItem>
   )
 }
