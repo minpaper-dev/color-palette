@@ -29,7 +29,6 @@ const Header = () => {
   const [inputValue, setInputValue] = useState('')
 
   const navigateTo = () => {
-    const color = tinycolor(inputValue).isValid()
     if (tinycolor(inputValue).isValid()) {
       const noHash = inputValue.replace('#', '')
       navigate(`/color/${noHash}`)
