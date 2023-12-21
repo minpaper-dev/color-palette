@@ -1,9 +1,9 @@
 import { useParams } from 'react-router-dom'
 import Header from '../components/Header'
 import styled from 'styled-components'
-import SingleColorItem from '../components/SingleColorItem'
 import tinycolor from 'tinycolor2'
 import { useEffect, useState } from 'react'
+import ColorItem from '../components/ColorItem'
 
 const Container = styled.div`
   display: flex;
@@ -12,21 +12,23 @@ const Container = styled.div`
   padding: 5rem 0 0;
 `
 
-const WrapColor = styled.div<{ $color: string }>`
+const WrapColor = styled.div`
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-  align-items: center;
   justify-content: center;
   width: 100%;
-  /* background-color: ${props => props.$color}; */
   padding: 10rem;
+  font-size: 2rem;
 `
 
 const Wrap = styled.div`
   width: 100%;
   display: flex;
-  /* align-items: center; */
+  flex-wrap: wrap;
+  margin: 1rem 0 5rem;
+  font-size: 1.5rem;
+  align-items: center;
   /* justify-content: space-between; */
 `
 
@@ -47,7 +49,7 @@ const ColorPage = () => {
     getBright()
     getDesaturate()
     getSat()
-  }, [])
+  }, [color])
 
   const getColor = () => {
     const colorSet = new Set()
@@ -121,85 +123,119 @@ const ColorPage = () => {
     setDes(uniqueColors)
   }
 
+  if (!color) return
+
   return (
     <Container>
       <Header />
-      <WrapColor $color={`#${color}`}>
+      <ColorItem color={color} index={0} />
+      <WrapColor>
+        채도
         <Wrap>
           {colors.map(color => (
-            <SingleColorItem color={color} />
+            <ColorItem color={color.replace('#', '')} index={1} />
           ))}
         </Wrap>
+        채도
         <Wrap>
           {bright.map(color => (
-            <SingleColorItem color={color} />
+            <ColorItem color={color.replace('#', '')} index={0} />
           ))}
         </Wrap>
+        채도
         <Wrap>
           {des.map(color => (
-            <SingleColorItem color={color} />
+            <ColorItem color={color.replace('#', '')} index={0} />
           ))}
         </Wrap>
+        채도
         <Wrap>
           {sat.map(color => (
-            <SingleColorItem color={color} />
+            <ColorItem color={color.replace('#', '')} index={0} />
           ))}
         </Wrap>
-
+        채도
         <Wrap>
-          <SingleColorItem color={tinycolor(HEX_COLOR).spin(0).toString()} />
-          <SingleColorItem color={tinycolor(HEX_COLOR).spin(90).toString()} />
-          <SingleColorItem color={tinycolor(HEX_COLOR).spin(180).toString()} />
-          <SingleColorItem color={tinycolor(HEX_COLOR).spin(270).toString()} />
+          <ColorItem
+            color={tinycolor(HEX_COLOR).spin(0).toString().replace('#', '')}
+            index={0}
+          />
+          <ColorItem
+            color={tinycolor(HEX_COLOR).spin(90).toString().replace('#', '')}
+            index={0}
+          />
+          <ColorItem
+            color={tinycolor(HEX_COLOR).spin(180).toString().replace('#', '')}
+            index={0}
+          />
+          <ColorItem
+            color={tinycolor(HEX_COLOR).spin(270).toString().replace('#', '')}
+            index={0}
+          />
         </Wrap>
-
+        유사한 색
         <Wrap>
-          유사한 색
           {tinycolor(HEX_COLOR)
             .analogous()
             .map(color => (
-              <SingleColorItem color={color.toHex8String()} />
+              <ColorItem
+                color={color.toHexString().replace('#', '')}
+                index={0}
+              />
             ))}
         </Wrap>
-
+        단색
         <Wrap>
-          단색
           {tinycolor(HEX_COLOR)
             .monochromatic()
             .map(color => (
-              <SingleColorItem color={color.toHex8String()} />
+              <ColorItem
+                color={color.toHexString().replace('#', '')}
+                index={0}
+              />
             ))}
         </Wrap>
-
+        분열보색
         <Wrap>
-          분열보색
           {tinycolor(HEX_COLOR)
             .splitcomplement()
             .map(color => (
-              <SingleColorItem color={color.toHex8String()} />
+              <ColorItem
+                color={color.toHexString().replace('#', '')}
+                index={0}
+              />
             ))}
         </Wrap>
-
+        3색 배색
         <Wrap>
-          3색 배색
           {tinycolor(HEX_COLOR)
             .triad()
             .map(color => (
-              <SingleColorItem color={color.toHex8String()} />
+              <ColorItem
+                color={color.toHexString().replace('#', '')}
+                index={0}
+              />
             ))}
         </Wrap>
-
+        3색 배색
         <Wrap>
           {tinycolor(HEX_COLOR)
             .tetrad()
             .map(color => (
-              <SingleColorItem color={color.toHex8String()} />
+              <ColorItem
+                color={color.toHexString().replace('#', '')}
+                index={0}
+              />
             ))}
         </Wrap>
-
+        3색 배색
         <Wrap>
-          <SingleColorItem
-            color={tinycolor(HEX_COLOR).complement().toHex8String()}
+          <ColorItem
+            color={tinycolor(HEX_COLOR)
+              .complement()
+              .toHexString()
+              .replace('#', '')}
+            index={0}
           />
         </Wrap>
       </WrapColor>
