@@ -1,32 +1,12 @@
 export const MAJOR_COLOR = [
-  {
-    color: 'FF6C72',
-  },
-  {
-    color: 'FFB3B6',
-  },
-  {
-    color: 'FFA37A',
-  },
-  {
-    color: 'FFDA72',
-  },
-  {
-    color: '1FCF7D',
-  },
-  {
-    color: '3EA0E0',
-  },
-  {
-    color: '9B91C6',
-  },
-  {
-    color: '9C6668',
-  },
-  {
-    color: 'C0BEBF',
-  },
-  {
-    color: '4A4A4A',
-  },
+  'f74902',
+  'efc6d3',
+  'f77f00',
+  'f9e814',
+  '009e60',
+  '6689cc',
+  'aa47ba',
+  '998c7c',
+  '96938e',
+  '282821',
 ]

@@ -3,6 +3,7 @@ import { MAJOR_COLOR } from '../data/major'
 
 const Container = styled.div`
   width: 15vw;
+  position: fixed;
 `
 
 const Palette = styled.div`
@@ -11,7 +12,7 @@ const Palette = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
   justify-items: center;
-  padding: 3rem 1rem;
+  padding: 3rem 2rem;
   border-radius: 0.4rem;
   row-gap: 2rem;
 `
@@ -25,12 +26,20 @@ const PaletteItem = styled.div<{ $color: string }>`
   cursor: pointer;
 `
 
-const SideMenu = () => {
+const SideMenu = ({
+  scrollToColor,
+}: {
+  scrollToColor: (index: number) => void
+}) => {
   return (
     <Container>
       <Palette>
-        {MAJOR_COLOR.map(item => (
-          <PaletteItem key={item.color} $color={item.color} />
+        {MAJOR_COLOR.map((color, index) => (
+          <PaletteItem
+            key={color}
+            $color={color}
+            onClick={() => scrollToColor(index)}
+          />
         ))}
       </Palette>
     </Container>

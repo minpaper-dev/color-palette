@@ -5,7 +5,7 @@ const Container = styled.div<{ $color: string; $isDark: boolean }>`
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 8%;
+  flex: 1;
   height: 20rem;
   background-color: ${props => props.$color};
   color: ${props => (props.$isDark ? 'white' : 'black')};
@@ -14,7 +14,7 @@ const Container = styled.div<{ $color: string; $isDark: boolean }>`
 const SingleColorItem = ({ color }: { color: string }) => {
   return (
     <Container $color={color} $isDark={tinycolor(color).isDark()}>
-      {color}
+      {color.toLocaleUpperCase()}
     </Container>
   )
 }
